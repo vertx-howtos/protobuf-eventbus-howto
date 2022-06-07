@@ -16,16 +16,16 @@ public class ProtobufCodec implements MessageCodec<GeneratedMessageV3, Generated
 
   @Override
   public void encodeToWire(Buffer buffer, GeneratedMessageV3 o) {
-    byte[] bytes = toBytes(o);
+    var bytes = toBytes(o);
     buffer.appendInt(bytes.length);
     buffer.appendBytes(bytes);
   }
 
   @Override
   public GeneratedMessageV3 decodeFromWire(int pos, Buffer buffer) {
-    int length = buffer.getInt(pos);
+    var length = buffer.getInt(pos);
     pos += 4;
-    byte[] bytes = buffer.getBytes(pos, pos + length);
+    var bytes = buffer.getBytes(pos, pos + length);
     return (GeneratedMessageV3) fromBytes(bytes, CheckedClassNameObjectInputStream::new);
   }
 
@@ -56,7 +56,7 @@ public class ProtobufCodec implements MessageCodec<GeneratedMessageV3, Generated
 
     @Override
     protected Class<?> resolveClass(ObjectStreamClass desc) throws IOException, ClassNotFoundException {
-      String name = desc.getName();
+      var name = desc.getName();
       if (name.startsWith("com.google.protobuf.")
         || name.startsWith(PROTOS_PACKAGE_NAME)
         || EventBus.DEFAULT_SERIALIZABLE_CHECKER.apply(name)) {

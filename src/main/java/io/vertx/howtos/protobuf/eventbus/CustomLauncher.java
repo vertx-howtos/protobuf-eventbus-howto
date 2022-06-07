@@ -11,7 +11,7 @@ public class CustomLauncher extends Launcher {
 
   @Override
   public void afterStartingVertx(Vertx vertx) {
-    ProtobufCodec protobufCodec = new ProtobufCodec();
+    var protobufCodec = new ProtobufCodec();
     vertx.eventBus().registerCodec(protobufCodec);
     vertx.eventBus().codecSelector(o -> protobufCodec.test(o.getClass().getName()) ? protobufCodec.name() : null);
   }

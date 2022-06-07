@@ -8,7 +8,7 @@ public class SenderVerticle extends AbstractVerticle {
   @Override
   public void start() throws Exception {
     vertx.setPeriodic(5000, l -> {
-      GreetingRequest request = GreetingRequest.newBuilder().setName("Jane Doe").build();
+      var request = GreetingRequest.newBuilder().setName("Jane Doe").build();
       System.out.printf("Sending request = %s (%d)%n", request.getName(), System.identityHashCode(request));
       vertx.eventBus().<GreetingReply>request("greetings", request)
         .map(Message::body)

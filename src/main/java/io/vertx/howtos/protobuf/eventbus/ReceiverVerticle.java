@@ -7,10 +7,10 @@ public class ReceiverVerticle extends AbstractVerticle {
   @Override
   public void start() throws Exception {
     vertx.eventBus().<GreetingRequest>consumer("greetings", msg -> {
-      GreetingRequest request = msg.body();
+      var request = msg.body();
       System.out.printf("Received request = %s (%d)%n", request.getName(), System.identityHashCode(request));
-      String greeting = String.format("Hello %s", request.getName());
-      GreetingReply reply = GreetingReply.newBuilder().setMessage(greeting).build();
+      var greeting = String.format("Hello %s", request.getName());
+      var reply = GreetingReply.newBuilder().setMessage(greeting).build();
       System.out.printf("Sending reply = %s (%d)%n", reply.getMessage(), System.identityHashCode(reply));
       msg.reply(reply);
     });
