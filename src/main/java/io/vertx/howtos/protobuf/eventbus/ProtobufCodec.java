@@ -2,21 +2,16 @@ package io.vertx.howtos.protobuf.eventbus;
 
 import com.google.protobuf.GeneratedMessageV3;
 import io.vertx.core.buffer.Buffer;
-import io.vertx.core.eventbus.EventBus;
 import io.vertx.core.eventbus.MessageCodec;
-
-import java.io.*;
-
-import static io.vertx.core.impl.SerializableUtils.fromBytes;
-import static io.vertx.core.impl.SerializableUtils.toBytes;
+import io.vertx.core.impl.SerializableUtils;
 
 public class ProtobufCodec implements MessageCodec<GeneratedMessageV3, GeneratedMessageV3> {
 
-  private static final String PROTOS_PACKAGE_NAME = "io.vertx.howtos.protobuf.eventbus.";
+  static final String PROTOS_PACKAGE_NAME = "io.vertx.howtos.protobuf.eventbus.";
 
   @Override
   public void encodeToWire(Buffer buffer, GeneratedMessageV3 o) {
-    var bytes = toBytes(o);
+    var bytes = SerializableUtils.toBytes(o);
     buffer.appendInt(bytes.length);
     buffer.appendBytes(bytes);
   }
@@ -26,7 +21,7 @@ public class ProtobufCodec implements MessageCodec<GeneratedMessageV3, Generated
     var length = buffer.getInt(pos);
     pos += 4;
     var bytes = buffer.getBytes(pos, pos + length);
-    return (GeneratedMessageV3) fromBytes(bytes, CheckedClassNameObjectInputStream::new);
+    return (GeneratedMessageV3) SerializableUtils.fromBytes(bytes, CheckedClassNameObjectInputStream::new);
   }
 
   @Override
@@ -41,28 +36,10 @@ public class ProtobufCodec implements MessageCodec<GeneratedMessageV3, Generated
 
   @Override
   public byte systemCodecID() {
-    return -1;
+    return -1; // -1 for a user codec
   }
 
-  public boolean test(String name) {
-    return name.startsWith(PROTOS_PACKAGE_NAME);
-  }
-
-  private static class CheckedClassNameObjectInputStream extends ObjectInputStream {
-
-    CheckedClassNameObjectInputStream(InputStream in) throws IOException {
-      super(in);
-    }
-
-    @Override
-    protected Class<?> resolveClass(ObjectStreamClass desc) throws IOException, ClassNotFoundException {
-      var name = desc.getName();
-      if (name.startsWith("com.google.protobuf.")
-        || name.startsWith(PROTOS_PACKAGE_NAME)
-        || EventBus.DEFAULT_SERIALIZABLE_CHECKER.apply(name)) {
-        return super.resolveClass(desc);
-      }
-      throw new InvalidClassException("Class not allowed: " + name);
-    }
+  public boolean appliesTo(String className) {
+    return className.startsWith(PROTOS_PACKAGE_NAME);
   }
 }

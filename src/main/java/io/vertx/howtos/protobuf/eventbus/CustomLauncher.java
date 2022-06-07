@@ -13,6 +13,8 @@ public class CustomLauncher extends Launcher {
   public void afterStartingVertx(Vertx vertx) {
     var protobufCodec = new ProtobufCodec();
     vertx.eventBus().registerCodec(protobufCodec);
-    vertx.eventBus().codecSelector(o -> protobufCodec.test(o.getClass().getName()) ? protobufCodec.name() : null);
+    vertx.eventBus().codecSelector(body -> {
+      return protobufCodec.appliesTo(body.getClass().getName()) ? protobufCodec.name() : null;
+    });
   }
 }
