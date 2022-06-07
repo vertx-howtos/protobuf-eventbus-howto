@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package greeting;
+
+option java_multiple_files = true;
+option java_package = "io.vertx.howtos.protobuf.eventbus";
+option java_outer_classname = "GreetingProtos";
+
+message GreetingRequest {
+  string name = 1;
+}
+
+message GreetingReply {
+  string message = 1;
+}

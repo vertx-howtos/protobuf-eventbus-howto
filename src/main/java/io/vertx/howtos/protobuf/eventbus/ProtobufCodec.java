@@ -12,7 +12,7 @@ import static io.vertx.core.impl.SerializableUtils.toBytes;
 
 public class ProtobufCodec implements MessageCodec<GeneratedMessageV3, GeneratedMessageV3> {
 
-  private static final String PROTOS_PACKAGE_NAME = AddressBookProtos.class.getPackageName() + ".";
+  private static final String PROTOS_PACKAGE_NAME = "io.vertx.howtos.protobuf.eventbus.";
 
   @Override
   public void encodeToWire(Buffer buffer, GeneratedMessageV3 o) {
