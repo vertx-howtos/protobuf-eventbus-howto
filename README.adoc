@@ -216,7 +216,7 @@ Sending reply = Hello Jane Doe (1483137857)
 Received reply = Hello Jane Doe (1483137857)
 ----
 
-Pay attention to the system _hashcode_.
+Pay attention to the system _hash code_.
 Notice that the request object is the same in both the sender and receiver.
 This is also true about the reply object.
 
