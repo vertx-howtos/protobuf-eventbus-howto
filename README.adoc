@@ -27,7 +27,7 @@ Click on advanced options to expand the hidden panel and then change the value o
 * _Dependencies_: add `Hazelcast Cluster Manager`
 * _Package_: set to `io.vertx.howtos.protobuf.eventbus`
 
-When you're done, click on _Generate Project_ and extract the generated archive content somewhere on your disk.
+When you're done, click on _Generate Project_ and extract the generated archive content somewhere on your filesystem.
 
 [TIP]
 ====
