@@ -42,7 +42,7 @@ unzip -d protobuf-eventbus-howto protobuf-eventbus-howto.zip
 
 Before coding, we need to make some adjustments to the build file:
 
-* configuring a custom Vert.x `Launcher` class (that will be used as entry point when running the executable JAR)
+* configure a custom Vert.x `Launcher` class (that will be used as entry point when running the executable JAR)
 * add a dependency to _Protocol Buffers_
 * configuring Maven plugins to generate message classes from a `.proto` file.
 
