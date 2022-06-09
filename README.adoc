@@ -186,7 +186,7 @@ Received request = Jane Doe (449456520)
 Sending reply = Hello Jane Doe (522259462)
 ----
 
-In clustered mode, the system _hashcode_ that is printed is not important: objects living in distinct virtual machines are, obviously, different.
+In clustered mode, the system _hash code_ that is printed is not important: objects living in distinct virtual machines are, obviously, different.
 
 What about local mode?
 To run the sender and the receiver in the same virtual machine, we can use a third verticle whose only purpose is to deploy them.
