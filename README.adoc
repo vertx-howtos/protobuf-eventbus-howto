@@ -74,9 +74,9 @@ include::src/main/proto/greetings.proto[]
 The receiver verticle registers a consumer on the Event Bus.
 When a request is received:
 
-. the request is printed to the console along with its system _hashcode_
+. the request is printed to the console along with its system _hash code_
 . a reply is generated
-. the reply is printed to the console along with its system _hashcode_
+. the reply is printed to the console along with its system _hash code_
 . the reply is sent
 
 [source,java]
@@ -93,9 +93,9 @@ The sender verticle schedules a periodic task.
 Every five seconds:
 
 . a request is generated
-. the request is printed to the console along with its system _hashcode_
+. the request is printed to the console along with its system _hash code_
 . the request is sent
-. the reply is printed to the console along with its system _hashcode_
+. the reply is printed to the console along with its system _hash code_
 
 [source,java]
 .SenderVerticle.java
