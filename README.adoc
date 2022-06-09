@@ -31,7 +31,7 @@ When you're done, click on _Generate Project_ and extract the generated archive 
 
 [TIP]
 ====
-Alternatively, you may do this from the command-line:
+You may alternatively do this from the command line:
 
 [source,shell]
 ----
