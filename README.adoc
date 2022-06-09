@@ -85,7 +85,7 @@ When a request is received:
 include::src/main/java/io/vertx/howtos/protobuf/eventbus/ReceiverVerticle.java[]
 ----
 
-NOTE: The system _hashcode_ is printed so that when we run the application in a single virtual machine, we can see whether objects are duplicated or not by the Event Bus.
+NOTE: The system _hash code_ is printed so that when we run the application in a single virtual machine, we can see whether objects are duplicated or not by the Event Bus.
 
 === Sender verticle
 
